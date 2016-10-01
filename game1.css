@@ -1,0 +1,71 @@
+*{
+  /*margin: 0px;*/
+  padding: 0px;
+}
+div.outer{
+  border: 2px rgba(200,200,200,0.5) solid;
+  height: 500px;
+  width: 25%;
+  overflow: hidden;
+  position: absolute;
+}
+div.car{
+  background: red;
+  width: 25px;
+  height: 40px;
+  border-radius: 5px;
+  position: fixed;
+  top: 40px;
+  left: 77px;
+  margin: auto;
+}
+  div.main_div{
+    position: relative;
+    left: 0px;
+    top: 20px;
+    margin-right: auto;
+    /*height: 500px;*/
+    width: 500px;
+    border: 2px rgba(200,200,200,0.5) solid;
+    background: rgb(37, 37, 37);
+    width: 150px;
+    transition: 2ms 1ms linear;
+  }
+  div.one{
+    /*heigth: 100px;*/
+    width: 25px;
+    maring: 0px;
+    /*border: 1px rgba(200,200,200,0.9) solid;*/
+    /*background: red;*/
+  }
+  img{
+    height: 200px;
+    width: 150px;
+    maring-top: -4px;
+  }
+  div.profit{
+    background: green;
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+  div.loss{
+    background: red;
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+    position: fixed;
+    top: 50px;
+    left: 20px;
+  }
+  div.score{
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    color: white;
+
+  }
