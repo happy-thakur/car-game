@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Game 1</title>
+    <script type="text/javascript" src="jquery.min.js">
+    </script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js">
+
+    </script> -->
+    <style media="screen">
+    *{
+      /*margin: 0px;*/
+      padding: 0px;
+    }
+    div.outer{
+      border: 2px rgba(200,200,200,0.5) solid;
+      height: 500px;
+      width: 25%;
+      overflow: hidden;
+      position: absolute;
+    }
+    div.car{
+      background: red;
+      width: 25px;
+      height: 40px;
+      border-radius: 5px;
+      position: fixed;
+      top: 40px;
+      left: 77px;
+      margin: auto;
+    }
+      div.main_div{
+        position: relative;
+        left: 0px;
+        top: 20px;
+        margin-right: auto;
+        /*height: 500px;*/
+        width: 500px;
+        border: 2px rgba(200,200,200,0.5) solid;
+        background: rgb(37, 37, 37);
+        width: 150px;
+        transition: 2ms 1ms linear;
+      }
+      div.one{
+        /*heigth: 100px;*/
+        width: 25px;
+        maring: 0px;
+        /*border: 1px rgba(200,200,200,0.9) solid;*/
+        /*background: red;*/
+      }
+      img{
+        height: 200px;
+        width: 150px;
+        maring-top: -4px;
+      }
+      div.profit{
+        background: green;
+        height: 10px;
+        width: 10px;
+        border-radius: 5px;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+      }
+      div.loss{
+        background: red;
+        height: 10px;
+        width: 10px;
+        border-radius: 5px;
+        position: fixed;
+        top: 50px;
+        left: 20px;
+      }
+      div.score{
+        background: rgba(0,0,0,0.5);
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        color: white;
+
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="score">
+      Score:
+    </div>
+    <div class="outer">
+      <div class="main_div">
+        <div class="one">
+          <img src="road1.jpg" alt="road" style="maring-top: -4px;"/>
+          <img src="road1.jpg" class="road" alt="road" style="maring-top: -4px;"/>
+          <img src="road1.jpg" alt="road" style="maring-top: -4px;"/>
+          <img src="road1.jpg" alt="road" style="maring-top: -4px;"/>
+          <img src="road1.jpg" alt="road" style="maring-top: -4px;"/>
+          <!-- <img src="road1.jpg" alt="road" style="maring-top: -4px;"/>
+          <img src="road1.jpg" alt="road" style="maring-top: -4px;"/> -->
+        </div>
+    </div>
+      <!-- <div class="one"></div> -->
+    </div>
+    <div class="car">
+      C
+    </div>
+    <div class="profit">
+
+    </div>
+    <div class="loss">
+
+    </div>
+    <script type="text/javascript">
+
+      var count = 1, inc = 0;
+      $(function(){
+
+        function call(){
+          var div = $(".main_div"),
+              profit = $("div.profit"),
+              loss = $("div.loss");
+          var x = div.position(),
+              profit_pos = profit.position(),
+              loss_pos = loss.position();
+          var img = $("img.road");
+
+          //this is done to move the screen..
+          div.css("top", Math.floor(x.top - 10) + "px");
+          $('div.score').html(inc);
+          inc++;
+
+          profit.css("top", profit_pos.top + 5 + "px");
+          loss.css("top", loss_pos.top + 5 + "px");
+          // console.log(profit_pos.top);
+          // console.log(loss_pos.top);
+          //condition for game over..
+          if(x.top > -10000 && count == 1)
+          {
+            setTimeout(call, 10);
+          }
+          else {
+            {
+              console.log('game over');
+            }
+          }
+          if(count == 1)
+          {
+            //this is done to add more images..
+            if(inc%20 == 0)
+            {
+              $("div.one").append("<img src='road1.jpg' />");
+            }
+
+
+            // if(profit_pos.top >= 390)
+            // {
+            //   profit.remove();
+            // }
+            // if(loss_pos.top >= 390)
+            // {
+            //   loss.remove();
+            // }
+
+            if(x.top % 100== 0)
+            {
+              //this is done to add profit and loss div on road..
+              var rand = Math.floor(Math.random() * 100);
+              //condition for profit
+              if(rand % 3 == 0)
+              {
+                $('body').append('<p>P</p>');
+                console.log('P');
+              }
+              if(rand % 5== 0)
+              {
+                $('body').append('<p>L</p>');
+                console.log('L');
+              }
+            }
+          }
+        }
+        call();
+        $("html").keypress(function(event){
+          // alert('hello');
+          event.preventDefault();
+          var x = $('div.car').position();
+          var key_val = event.keyCode
+          if(count == 1)
+          {
+            if(key_val == 38)
+            {
+              //up arrow..
+              $('div.car').css('top', x.top - 10 + "px");
+            }
+            else if(key_val == 39)
+            {
+              //right arrow..
+              $('div.car').css('left', x.left + 10 + "px");
+            }
+            else if(key_val == 40)
+            {
+              //down arrow..
+              $('div.car').css('top', x.top + 10 + "px");
+            }
+            else if(key_val == 37)
+            {
+              //left arrow..
+              $('div.car').css('left', x.left - 10 + "px");
+            }
+            if(x.left <= 27 || x.left >= 127 || x.top <= 10 || x.top >= 470)
+            {
+              count = 0;
+            }
+          }
+          console.log(event);
+          console.log(key_val);
+        });
+      });
+    </script>
+  </body>
+</html>
